@@ -1,0 +1,20 @@
+import re
+
+def validate_car_id(car_id):
+    # Регулярное выражение для проверки валидного номера
+    pattern = r'^[АЕИОПРСТУХ]{1}\d{3}[АЕИОПРСТУХ]{2}\d{2,3}$'
+    
+    if re.match(pattern, car_id):
+        # Если номер валиден, извлекаем номер и регион
+        number = car_id[:-2]  # Все кроме последних двух цифр
+        region = car_id[-2:]  # Последние две цифры
+        return f'Номер {number} валиден. Регион: {region}.'
+    else:
+        return 'Номер не валиден.'
+
+# Примеры использования
+car_id1 = 'А222БС96'
+print(validate_car_id(car_id1))
+
+car_id2 = 'АБ22ВВ193'
+print(validate_car_id(car_id2))
